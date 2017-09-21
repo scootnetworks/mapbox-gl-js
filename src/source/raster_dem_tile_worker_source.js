@@ -19,9 +19,7 @@ class RasterDEMTileWorkerSource {
         this.loaded = {};
     }
 
-    /**
-     * Implements {@link WorkerSource#loadTile}.
-     */
+
     loadTile(params: TileParameters & {
                 rawImageData: RGBAImage,
                 coord: TileCoord,
@@ -44,13 +42,6 @@ class RasterDEMTileWorkerSource {
         callback(null, dem.serialize(transferrables), transferrables);
     }
 
-    /**
-     * Implements {@link WorkerSource#removeTile}.
-     *
-     * @param params
-     * @param params.source The id of the source for which we're loading this tile.
-     * @param params.uid The UID for this tile.
-     */
     removeTile(params: TileParameters) {
         const loaded = this.loaded[params.source],
             uid = params.uid;
