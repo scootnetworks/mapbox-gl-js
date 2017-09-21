@@ -877,8 +877,10 @@ class Camera extends Evented {
         // The finish function might emit events which trigger new eases, which
         // set a new _finishFn. Ensure we don't delete it unintentionally.
         const finish = this._finishFn;
-        delete this._finishFn;
-        finish.call(this);
+        if (finish) {
+            delete this._finishFn;
+            finish.call(this);
+        }
     }
 
     // convert bearing so that it's numerically close to the current one so that it interpolates properly
